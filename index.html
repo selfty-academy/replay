@@ -63,7 +63,7 @@
 
   /* ---------- En-tête ---------- */
   header {
-    padding: 34px 0 8px;
+    padding: 26px 0 4px;
     text-align: center;
   }
   header img {
@@ -76,7 +76,7 @@
   .hero {
     position: relative;
     text-align: center;
-    padding: 44px 0 34px;
+    padding: 28px 0 22px;
   }
   .hero .arcs {
     position: absolute;
@@ -121,7 +121,7 @@
 
   .hero p {
     max-width: 620px;
-    margin: 20px auto 0;
+    margin: 14px auto 0;
     font-size: 18.5px;
     color: rgba(30, 39, 72, 0.82);
   }
@@ -232,7 +232,7 @@
     font-size: 15.5px;
     color: rgba(30, 39, 72, 0.68);
     max-width: 540px;
-    margin: 18px auto 0;
+    margin: 12px auto 0;
   }
 
   /* ---------- Filet de séparation ---------- */
@@ -241,7 +241,7 @@
     align-items: center;
     gap: 18px;
     max-width: 420px;
-    margin: 64px auto;
+    margin: 38px auto;
   }
   .filet::before, .filet::after {
     content: "";
@@ -256,7 +256,7 @@
   .suite-intro {
     text-align: center;
     max-width: 640px;
-    margin: 0 auto 44px;
+    margin: 0 auto 32px;
   }
   h2 {
     font-family: var(--display);
@@ -476,7 +476,7 @@
       margin: 64px auto 0;
     }
     .a-propos figure { max-width: 240px; }
-    .filet { margin: 48px auto; }
+    .filet { margin: 32px auto; }
     header { padding-top: 26px; }
     header img { width: 126px; }
     .bouton-lecture { width: 72px; height: 72px; }
@@ -529,10 +529,10 @@
         </button>
         <div class="attente" id="attente">
           <span class="titre-facade">Le replay arrive</span>
-          <p>Il est en cours de mise en ligne. Reviens un peu plus tard, il t'attendra ici.</p>
+          <p>Il est en cours de mise en ligne, encore quelques instants.</p>
         </div>
       </div>
-      <p class="legende">Installe-toi bien. Tu peux mettre pause, revenir plus tard, le regarder en plusieurs fois&nbsp;: il est là pour toi.</p>
+      <p class="legende">Installe-toi bien, lance la vidéo et laisse-toi porter&nbsp;: ce moment est à toi.</p>
     </div>
   </section>
 
@@ -546,10 +546,10 @@
     </svg>
   </div>
 
-  <section class="suite">
+  <section class="suite" id="suite">
     <div class="suite-intro apparait">
       <h2>Et maintenant&nbsp;? <em>C'est toi qui choisis.</em></h2>
-      <p>Si ce que tu as vu résonne, voici trois façons simples de continuer. Aucune n'est obligatoire. Pas de compte à rebours, pas de place qui expire à minuit&nbsp;: juste des portes ouvertes, si tu as envie de les pousser.</p>
+      <p>Si ce que tu as vu résonne, voici trois façons simples de continuer. Aucune n'est obligatoire, juste des portes ouvertes. Pour parler directement avec Anaïs, c'est le call. Pour le reste, WhatsApp et Instagram sont là.</p>
     </div>
 
     <div class="cartes">
@@ -560,37 +560,41 @@
             <path d="M3 10h18M8 3v4M16 3v4"/>
           </svg>
         </span>
-        <h3>Faire le point, ensemble</h3>
-        <p>Un appel de clarté de 30&nbsp;minutes avec l'équipe&nbsp;: où tu en es, ce qui te bride, et si la Selfty Academy peut vraiment t'aider. Si ce n'est pas le bon moment pour toi, on te le dira honnêtement.</p>
-        <a class="action pleine" id="cta-call" href="https://app.iclosed.io/e/SelftyAcademy/clarity-call" target="_blank" rel="noopener">Choisir un créneau</a>
+        <h3>Réserver ton call avec Anaïs</h3>
+        <p>Le seul endroit où tu échanges directement avec Anaïs&nbsp;: 30&nbsp;minutes en tête-à-tête pour poser où tu en es, ce qui te bride, et voir si la Selfty Academy est faite pour toi. Si ce n'est pas le bon moment, elle te le dira honnêtement.</p>
+        <a class="action pleine" id="cta-call" href="https://app.iclosed.io/e/SelftyAcademy/clarity-call" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+          Réserver mon call</a>
       </article>
 
       <article class="carte apparait">
         <span class="picto" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12a8.5 8.5 0 0 1-12.4 7.6L3 21l1.5-5.4A8.5 8.5 0 1 1 21 12Z"/>
+          <svg width="22" height="22" viewBox="0 0 448 512" fill="currentColor">
+            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
           </svg>
         </span>
         <h3>Poser ta question</h3>
-        <p>Un doute, une question, envie d'un avis avant d'aller plus loin&nbsp;? Écris-nous sur WhatsApp. C'est un humain qui te répond, pas un robot, et ça n'engage à rien.</p>
-        <a class="action ligne" id="cta-whatsapp" href="#" target="_blank" rel="noopener">Envoyer un message</a>
+        <p>Un doute, une question, envie d'un avis avant d'aller plus loin&nbsp;? Écris-nous sur WhatsApp. C'est un humain de l'équipe qui te répond, pas un robot, et ça n'engage à rien.</p>
+        <a class="action ligne" id="cta-whatsapp" href="#" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+          Envoyer un message</a>
       </article>
 
       <article class="carte apparait">
         <span class="picto" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
-            <rect x="3" y="3" width="18" height="18" rx="5"/>
-            <circle cx="12" cy="12" r="4.2"/>
-            <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/>
+          <svg width="22" height="22" viewBox="0 0 448 512" fill="currentColor">
+            <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/>
           </svg>
         </span>
         <h3>Prendre ton temps</h3>
         <p>Tu préfères laisser infuser&nbsp;? Très bien aussi. Anaïs partage tout sur Instagram&nbsp;: viens la suivre, et passe lui dire bonjour en message privé quand tu en as envie.</p>
-        <a class="action ligne" id="cta-instagram" href="https://www.instagram.com/selfty_academy/" target="_blank" rel="noopener">@selfty_academy</a>
+        <a class="action ligne" id="cta-instagram" href="https://www.instagram.com/selfty_academy/" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+          @selfty_academy</a>
       </article>
     </div>
 
-    <p class="sans-pression">Quoi que tu choisisses, merci d'avoir été là. Le replay reste à toi&nbsp;: reviens le voir autant de fois que tu veux.</p>
+    <p class="sans-pression">Quoi que tu choisisses, merci d'avoir été là.</p>
 
     <div class="a-propos apparait">
       <figure>
@@ -737,6 +741,9 @@ function urlIntegration(brute) {
     if (h === 'drive.google.com') {
       const m = u.pathname.match(/\/file\/d\/([^/]+)/);
       if (m) return 'https://drive.google.com/file/d/' + m[1] + '/preview';
+      const id = u.searchParams.get('id');
+      if (id) return 'https://drive.google.com/file/d/' + id + '/preview';
+      return ''; // lien de dossier ou autre : rien d'intégrable
     }
     return brute;
   } catch (e) { return ''; }
@@ -762,6 +769,26 @@ function urlIntegration(brute) {
     $('lecteur').appendChild(iframe);
     facade.remove();
   });
+})();
+
+/* ---------- Quand on quitte la vidéo, la suite vient à toi ----------
+   À la première sortie du plein écran, la page glisse doucement vers
+   les trois portes. Une seule fois : pas de harcèlement. */
+(function descenteDouce() {
+  let entree = false, fait = false;
+  const changement = () => {
+    const plein = document.fullscreenElement || document.webkitFullscreenElement;
+    if (plein) { entree = true; return; }
+    if (entree && !fait) {
+      fait = true;
+      const reduit = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      setTimeout(() => {
+        $('suite').scrollIntoView({ behavior: reduit ? 'auto' : 'smooth', block: 'start' });
+      }, 350);
+    }
+  };
+  document.addEventListener('fullscreenchange', changement);
+  document.addEventListener('webkitfullscreenchange', changement);
 })();
 
 /* ---------- Apparitions douces au défilement ---------- */
