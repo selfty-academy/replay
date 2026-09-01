@@ -1,0 +1,783 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Le replay du live · Selfty Academy</title>
+<meta name="description" content="Le replay du live du 31 août avec Anaïs : un coaching en direct et les outils de la Selfty Academy, décryptés.">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  /* ======================================================================
+     DA Selfty Academy : papier, prune, terracotta, crème.
+     Même palette que la page du live du 31 août ; typographies de la
+     marque (Playfair Display pour les titres, Jost pour le texte).
+     Aucun tracker : pas de cookie, pas de pixel. Un simple compteur
+     de visites anonyme (voir CONFIG en bas de page).
+     ====================================================================== */
+  :root {
+    --prune: #5D2B4A;
+    --brun: #6E5343;
+    --terracotta: #C98B7C;
+    --terracotta-texte: #9E5340;
+    --creme: #FFE7D2;
+    --nuit: #1E2748;
+    --papier: #F8F4EE;
+    --blanc: #FFFDFB;
+    --filet: rgba(93, 43, 74, 0.16);
+    --filet-clair: rgba(201, 139, 124, 0.34);
+    --ombre: 0 24px 60px -24px rgba(93, 43, 74, 0.35);
+    --display: 'Playfair Display', 'Didot', Georgia, serif;
+    --body: 'Jost', 'Futura', 'Avenir Next', 'Century Gothic', sans-serif;
+    --doux: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--body);
+    font-weight: 300;
+    background: var(--papier);
+    color: var(--nuit);
+    line-height: 1.65;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--creme); color: var(--prune); }
+
+  a { color: var(--terracotta-texte); }
+
+  .page {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 0 22px;
+  }
+
+  /* ---------- En-tête ---------- */
+  header {
+    padding: 34px 0 8px;
+    text-align: center;
+  }
+  header img {
+    width: 148px;
+    height: auto;
+    display: inline-block;
+  }
+
+  /* ---------- Héro ---------- */
+  .hero {
+    position: relative;
+    text-align: center;
+    padding: 44px 0 34px;
+  }
+  .hero .arcs {
+    position: absolute;
+    top: -70px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 560px;
+    max-width: 90vw;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero > * { position: relative; z-index: 1; }
+
+  .badge {
+    display: inline-block;
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--terracotta-texte);
+    border: 1px solid var(--filet-clair);
+    background: var(--blanc);
+    border-radius: 999px;
+    padding: 8px 18px;
+    margin-bottom: 26px;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(38px, 6.4vw, 62px);
+    line-height: 1.12;
+    color: var(--prune);
+    letter-spacing: 0.01em;
+  }
+  h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--terracotta-texte);
+  }
+
+  .hero p {
+    max-width: 620px;
+    margin: 20px auto 0;
+    font-size: 18.5px;
+    color: rgba(30, 39, 72, 0.82);
+  }
+
+  /* ---------- Lecteur ---------- */
+  .lecteur-cadre {
+    max-width: 880px;
+    margin: 26px auto 0;
+  }
+  .lecteur {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: 18px;
+    overflow: hidden;
+    background:
+      radial-gradient(120% 160% at 50% -20%, #7a4062 0%, var(--prune) 55%, #401d33 100%);
+    box-shadow: var(--ombre);
+    isolation: isolate;
+  }
+  .lecteur iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .facade {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    border: 0;
+    cursor: pointer;
+    background: transparent;
+    color: var(--creme);
+    font-family: var(--body);
+  }
+  .facade .arcs-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.35;
+    pointer-events: none;
+  }
+  .bouton-lecture {
+    position: relative;
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    background: rgba(255, 231, 210, 0.14);
+    border: 1px solid rgba(255, 231, 210, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+    transition: transform 0.5s var(--doux), background 0.5s var(--doux);
+  }
+  .facade:hover .bouton-lecture,
+  .facade:focus-visible .bouton-lecture {
+    transform: scale(1.07);
+    background: rgba(255, 231, 210, 0.24);
+  }
+  .bouton-lecture svg { margin-left: 6px; }
+  .facade .titre-facade {
+    position: relative;
+    font-family: var(--display);
+    font-style: italic;
+    font-size: clamp(19px, 3vw, 24px);
+    letter-spacing: 0.02em;
+  }
+  .facade .sous-facade {
+    position: relative;
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.75;
+    font-weight: 400;
+  }
+
+  .attente {
+    position: absolute;
+    inset: 0;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: var(--creme);
+    text-align: center;
+    padding: 30px;
+  }
+  .attente .titre-facade {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: clamp(19px, 3vw, 24px);
+  }
+  .attente p { font-size: 15px; opacity: 0.8; max-width: 380px; }
+
+  .legende {
+    text-align: center;
+    font-size: 15.5px;
+    color: rgba(30, 39, 72, 0.68);
+    max-width: 540px;
+    margin: 18px auto 0;
+  }
+
+  /* ---------- Filet de séparation ---------- */
+  .filet {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    max-width: 420px;
+    margin: 64px auto;
+  }
+  .filet::before, .filet::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--filet);
+  }
+  .filet svg { flex-shrink: 0; opacity: 0.7; }
+
+  /* ---------- Et maintenant ---------- */
+  .suite { padding-bottom: 8px; }
+  .suite-intro {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 44px;
+  }
+  h2 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(28px, 4.6vw, 40px);
+    line-height: 1.18;
+    color: var(--prune);
+  }
+  h2 em { font-style: italic; font-weight: 400; color: var(--terracotta-texte); }
+  .suite-intro p {
+    margin-top: 16px;
+    color: rgba(30, 39, 72, 0.82);
+  }
+
+  .cartes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .carte {
+    background: var(--blanc);
+    border: 1px solid var(--filet);
+    border-radius: 18px;
+    padding: 30px 26px 26px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.5s var(--doux), box-shadow 0.5s var(--doux);
+  }
+  @media (hover: hover) {
+    .carte:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--ombre);
+    }
+  }
+  .carte .picto {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: var(--creme);
+    color: var(--terracotta-texte);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+  }
+  h3 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 21.5px;
+    color: var(--prune);
+    line-height: 1.25;
+    margin-bottom: 10px;
+  }
+  .carte p {
+    font-size: 15.5px;
+    color: rgba(30, 39, 72, 0.8);
+    flex: 1;
+  }
+  .carte .action {
+    margin-top: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 15.5px;
+    letter-spacing: 0.04em;
+    border-radius: 999px;
+    padding: 12px 22px;
+    transition: transform 0.4s var(--doux), background 0.4s var(--doux), color 0.4s var(--doux);
+  }
+  .action.pleine {
+    background: var(--prune);
+    color: var(--creme);
+  }
+  .action.pleine:hover { background: #4a2039; transform: translateY(-1px); }
+  .action.ligne {
+    border: 1px solid var(--filet);
+    color: var(--prune);
+    background: transparent;
+  }
+  .action.ligne:hover { background: var(--creme); border-color: var(--filet-clair); transform: translateY(-1px); }
+
+  .sans-pression {
+    text-align: center;
+    font-size: 14.5px;
+    color: rgba(30, 39, 72, 0.6);
+    max-width: 480px;
+    margin: 30px auto 0;
+  }
+
+  /* ---------- À propos ---------- */
+  .a-propos {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 44px;
+    align-items: center;
+    background: var(--blanc);
+    border: 1px solid var(--filet);
+    border-radius: 22px;
+    padding: 40px;
+    margin-top: 74px;
+  }
+  .a-propos figure {
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+  }
+  .a-propos img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .a-propos .qui {
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--terracotta-texte);
+    margin-bottom: 12px;
+  }
+  .a-propos h2 { font-size: clamp(26px, 3.6vw, 34px); }
+  .a-propos p {
+    margin-top: 14px;
+    color: rgba(30, 39, 72, 0.82);
+  }
+  .a-propos .insta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    text-decoration: none;
+    color: var(--prune);
+    font-weight: 400;
+    border-bottom: 1px solid var(--filet-clair);
+    padding-bottom: 2px;
+  }
+  .a-propos .insta:hover { color: var(--terracotta-texte); }
+
+  /* ---------- Pied de page ---------- */
+  footer {
+    margin-top: 90px;
+    background: var(--prune);
+    color: rgba(255, 231, 210, 0.85);
+    padding: 54px 22px 40px;
+    text-align: center;
+    font-size: 14px;
+  }
+  footer .marque {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 21px;
+    color: var(--creme);
+    margin-bottom: 10px;
+  }
+  footer .vie-privee {
+    max-width: 460px;
+    margin: 0 auto;
+    opacity: 0.8;
+  }
+  footer details {
+    max-width: 640px;
+    margin: 26px auto 0;
+    text-align: left;
+  }
+  footer summary {
+    cursor: pointer;
+    text-align: center;
+    list-style: none;
+    color: var(--creme);
+    opacity: 0.75;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  footer summary::-webkit-details-marker { display: none; }
+  footer details[open] summary { opacity: 1; }
+  footer details .legal {
+    margin-top: 18px;
+    background: rgba(255, 253, 251, 0.06);
+    border: 1px solid rgba(255, 231, 210, 0.18);
+    border-radius: 14px;
+    padding: 22px 24px;
+    font-size: 13.5px;
+    line-height: 1.7;
+  }
+  footer .legal h4 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--creme);
+    margin: 14px 0 4px;
+  }
+  footer .legal h4:first-child { margin-top: 0; }
+
+  /* ---------- Apparitions douces ---------- */
+  .apparait {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.9s var(--doux), transform 0.9s var(--doux);
+  }
+  .apparait.visible { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .apparait { opacity: 1; transform: none; transition: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  /* ---------- Mobile ---------- */
+  @media (max-width: 860px) {
+    .cartes { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
+    .a-propos {
+      grid-template-columns: 1fr;
+      gap: 26px;
+      padding: 26px;
+      max-width: 460px;
+      margin: 64px auto 0;
+    }
+    .a-propos figure { max-width: 240px; }
+    .filet { margin: 48px auto; }
+    header { padding-top: 26px; }
+    header img { width: 126px; }
+    .bouton-lecture { width: 72px; height: 72px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <header>
+    <img src="logo-encre.png" alt="Selfty Academy">
+  </header>
+
+  <section class="hero">
+    <!-- Motif de la marque : des arcs concentriques, comme l'emblème. -->
+    <svg class="arcs" viewBox="0 0 560 320" fill="none" aria-hidden="true">
+      <g stroke="#C98B7C" stroke-opacity="0.35">
+        <ellipse cx="280" cy="160" rx="270" ry="150"/>
+        <ellipse cx="280" cy="160" rx="216" ry="118"/>
+        <ellipse cx="280" cy="160" rx="162" ry="87"/>
+        <ellipse cx="280" cy="160" rx="108" ry="57"/>
+        <ellipse cx="280" cy="160" rx="54" ry="28"/>
+      </g>
+    </svg>
+
+    <span class="badge">Replay · Live du 31 août</span>
+    <h1>Prends un moment<br><em>pour toi.</em></h1>
+    <p>Le replay du live avec Anaïs&nbsp;: un vrai coaching en direct, les outils de la Selfty Academy décryptés un par un, et ce que ça change quand on arrête de se brider.</p>
+
+    <div class="lecteur-cadre">
+      <div class="lecteur" id="lecteur">
+        <button class="facade" id="facade" type="button" aria-label="Lancer le replay">
+          <svg class="arcs-video" viewBox="0 0 880 495" fill="none" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <g stroke="#FFE7D2" stroke-opacity="0.3">
+              <ellipse cx="440" cy="247" rx="430" ry="238"/>
+              <ellipse cx="440" cy="247" rx="344" ry="188"/>
+              <ellipse cx="440" cy="247" rx="258" ry="139"/>
+              <ellipse cx="440" cy="247" rx="172" ry="91"/>
+              <ellipse cx="440" cy="247" rx="86" ry="44"/>
+            </g>
+          </svg>
+          <span class="bouton-lecture" aria-hidden="true">
+            <svg width="30" height="34" viewBox="0 0 30 34" fill="none">
+              <path d="M28 15.27C29.33 16.04 29.33 17.96 28 18.73L3 33.16C1.67 33.93 0 32.97 0 31.43V2.57C0 1.03 1.67 0.07 3 0.84L28 15.27Z" fill="#FFE7D2"/>
+            </svg>
+          </span>
+          <span class="titre-facade">Le live avec Anaïs</span>
+          <span class="sous-facade">Lancer le replay</span>
+        </button>
+        <div class="attente" id="attente">
+          <span class="titre-facade">Le replay arrive</span>
+          <p>Il est en cours de mise en ligne. Reviens un peu plus tard, il t'attendra ici.</p>
+        </div>
+      </div>
+      <p class="legende">Installe-toi bien. Tu peux mettre pause, revenir plus tard, le regarder en plusieurs fois&nbsp;: il est là pour toi.</p>
+    </div>
+  </section>
+
+  <div class="filet" aria-hidden="true">
+    <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+      <g stroke="#C98B7C" stroke-opacity="0.8">
+        <ellipse cx="13" cy="13" rx="11" ry="12"/>
+        <ellipse cx="13" cy="13" rx="6.5" ry="7"/>
+        <ellipse cx="13" cy="13" rx="2.5" ry="3"/>
+      </g>
+    </svg>
+  </div>
+
+  <section class="suite">
+    <div class="suite-intro apparait">
+      <h2>Et maintenant&nbsp;? <em>C'est toi qui choisis.</em></h2>
+      <p>Si ce que tu as vu résonne, voici trois façons simples de continuer. Aucune n'est obligatoire. Pas de compte à rebours, pas de place qui expire à minuit&nbsp;: juste des portes ouvertes, si tu as envie de les pousser.</p>
+    </div>
+
+    <div class="cartes">
+      <article class="carte apparait">
+        <span class="picto" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+            <rect x="3" y="5" width="18" height="16" rx="3"/>
+            <path d="M3 10h18M8 3v4M16 3v4"/>
+          </svg>
+        </span>
+        <h3>Faire le point, ensemble</h3>
+        <p>Un appel de clarté de 30&nbsp;minutes avec l'équipe&nbsp;: où tu en es, ce qui te bride, et si la Selfty Academy peut vraiment t'aider. Si ce n'est pas le bon moment pour toi, on te le dira honnêtement.</p>
+        <a class="action pleine" id="cta-call" href="https://app.iclosed.io/e/SelftyAcademy/clarity-call" target="_blank" rel="noopener">Choisir un créneau</a>
+      </article>
+
+      <article class="carte apparait">
+        <span class="picto" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12a8.5 8.5 0 0 1-12.4 7.6L3 21l1.5-5.4A8.5 8.5 0 1 1 21 12Z"/>
+          </svg>
+        </span>
+        <h3>Poser ta question</h3>
+        <p>Un doute, une question, envie d'un avis avant d'aller plus loin&nbsp;? Écris-nous sur WhatsApp. C'est un humain qui te répond, pas un robot, et ça n'engage à rien.</p>
+        <a class="action ligne" id="cta-whatsapp" href="#" target="_blank" rel="noopener">Envoyer un message</a>
+      </article>
+
+      <article class="carte apparait">
+        <span class="picto" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+            <rect x="3" y="3" width="18" height="18" rx="5"/>
+            <circle cx="12" cy="12" r="4.2"/>
+            <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+        </span>
+        <h3>Prendre ton temps</h3>
+        <p>Tu préfères laisser infuser&nbsp;? Très bien aussi. Anaïs partage tout sur Instagram&nbsp;: viens la suivre, et passe lui dire bonjour en message privé quand tu en as envie.</p>
+        <a class="action ligne" id="cta-instagram" href="https://www.instagram.com/selfty_academy/" target="_blank" rel="noopener">@selfty_academy</a>
+      </article>
+    </div>
+
+    <p class="sans-pression">Quoi que tu choisisses, merci d'avoir été là. Le replay reste à toi&nbsp;: reviens le voir autant de fois que tu veux.</p>
+
+    <div class="a-propos apparait">
+      <figure>
+        <img src="portrait.jpg" alt="Anaïs Brault" loading="lazy">
+      </figure>
+      <div>
+        <p class="qui">Qui est derrière ce live</p>
+        <h2>Anaïs Brault, <em>fondatrice de la Selfty Academy</em></h2>
+        <p>Anaïs accompagne les femmes qui se brident à retrouver confiance en elles, à poser une vision claire et à construire une activité qui leur ressemble. Sans se forcer, sans se trahir, et sans attendre d'être «&nbsp;prête&nbsp;».</p>
+        <a class="insta" id="lien-insta-bas" href="https://www.instagram.com/selfty_academy/" target="_blank" rel="noopener">La retrouver sur Instagram</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p class="marque">Selfty Academy</p>
+  <p class="vie-privee">Cette page ne dépose aucun cookie et ne te trace pas. On compte simplement les visites, de façon anonyme, pour savoir si le replay est utile.</p>
+  <details>
+    <summary>Mentions légales</summary>
+    <div class="legal">
+      <h4>Éditeur</h4>
+      <p>EURL Anaïs Brault, entreprise unipersonnelle à responsabilité limitée au capital de 1&nbsp;000&nbsp;€.<br>
+      7 rue Bourg aux Moines, 35500 Vitré.<br>
+      SIRET 931&nbsp;033&nbsp;062&nbsp;00015 · RCS Rennes 931&nbsp;033&nbsp;062 · TVA FR09931033062.<br>
+      Directrice de la publication&nbsp;: Anaïs Brault.</p>
+      <h4>Hébergement</h4>
+      <p>Cette page est hébergée par GitHub Pages. GitHub&nbsp;Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis.</p>
+      <h4>Tes données</h4>
+      <p>Cette page ne collecte aucune donnée personnelle&nbsp;: pas de formulaire, pas de cookie, pas de pixel publicitaire. Seul un compteur de visites anonyme (date, type d'appareil, page de provenance) nous aide à savoir combien de personnes regardent le replay. La vidéo ne se charge qu'au moment où tu cliques sur «&nbsp;Lancer le replay&nbsp;».</p>
+      <h4>Propriété intellectuelle</h4>
+      <p>L'ensemble des contenus de cette page et du replay (vidéo, textes, identité visuelle, logo Selfty Academy) est protégé par le droit d'auteur. Toute reproduction sans autorisation écrite préalable est interdite.</p>
+    </div>
+  </details>
+</footer>
+
+<script>
+/* ======================================================================
+   CONFIG : la seule zone à modifier.
+   - REPLAY_URL : lien de la vidéo. Accepte un lien YouTube (watch,
+     youtu.be, live ou embed), Vimeo, ou un lien Google Drive de type
+     .../file/d/ID/view. Vide = écran « Le replay arrive ».
+   - WEBHOOK_URL : le même Apps Script que la page du live (classeur
+     « Candidature Webi »). Chaque événement part dans l'onglet Visites,
+     tagué « page=replay » pour le distinguer des visites du live.
+   ====================================================================== */
+const CONFIG = {
+  REPLAY_URL: "",
+  ICLOSED_URL: "https://app.iclosed.io/e/SelftyAcademy/clarity-call",
+  WHATSAPP_NUMBER: "33781474620",
+  WHATSAPP_TEXTE: "Bonjour ! Je viens de voir le replay du live de Selfty Academy et j'aurais une petite question.",
+  INSTAGRAM_URL: "https://www.instagram.com/selfty_academy/",
+  WEBHOOK_URL: "https://script.google.com/macros/s/AKfycbxelvzI5Y9BFhrZTsJkkWgoGm3ql88c1rLpmJq3gPzsDWZWcvhgyNGwAyIkDrYvpRoL5A/exec"
+};
+
+const $ = id => document.getElementById(id);
+
+/* ---------- Compteur anonyme : visites et clics ----------
+   Même principe que la page du live : un POST anonyme vers le Sheet.
+   Pas d'IP, pas de cookie, pas d'identifiant. La colonne Campagne
+   commence toujours par « page=replay » suivi des UTM éventuels. */
+const utmPage = (location.search.match(/utm_[^&]+/g) || []).join(' ');
+
+function envoyer(provenance, marqueur) {
+  if (!CONFIG.WEBHOOK_URL) return;
+  fetch(CONFIG.WEBHOOK_URL, {
+    method: 'POST',
+    keepalive: true,
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify({
+      etape: 'visite',
+      horodateur: new Date().toISOString(),
+      appareil: matchMedia('(pointer: coarse)').matches ? 'mobile' : 'ordinateur',
+      provenance: provenance,
+      utm: ('page=replay ' + (marqueur ? marqueur + ' ' : '') + utmPage).trim()
+    })
+  }).catch(() => {});
+}
+
+(function compterVisite() {
+  try {
+    if (sessionStorage.getItem('selfty-replay-visite')) return;
+    sessionStorage.setItem('selfty-replay-visite', '1');
+  } catch (e) { /* navigation privée stricte : tant pis, on comptera deux fois */ }
+  envoyer(document.referrer || 'accès direct', '');
+})();
+
+function suivreClic(el, marqueur) {
+  if (!el) return;
+  el.addEventListener('click', () => envoyer('clic depuis le replay', marqueur));
+}
+
+/* ---------- Liens ---------- */
+/* Les UTM de la page suivent vers iClosed, pour attribuer les rendez-vous. */
+(function preparerLiens() {
+  const call = $('cta-call');
+  if (utmPage && call) {
+    const url = new URL(CONFIG.ICLOSED_URL);
+    new URLSearchParams(location.search).forEach((v, k) => {
+      if (k.startsWith('utm_')) url.searchParams.set(k, v);
+    });
+    call.href = url.toString();
+  } else if (call) {
+    call.href = CONFIG.ICLOSED_URL;
+  }
+  $('cta-whatsapp').href = 'https://wa.me/' + CONFIG.WHATSAPP_NUMBER +
+    '?text=' + encodeURIComponent(CONFIG.WHATSAPP_TEXTE);
+  $('cta-instagram').href = CONFIG.INSTAGRAM_URL;
+  $('lien-insta-bas').href = CONFIG.INSTAGRAM_URL;
+
+  suivreClic(call, 'clic=call');
+  suivreClic($('cta-whatsapp'), 'clic=whatsapp');
+  suivreClic($('cta-instagram'), 'clic=instagram');
+  suivreClic($('lien-insta-bas'), 'clic=instagram');
+})();
+
+/* ---------- Lecteur : rien ne se charge avant le clic ----------
+   La façade est une simple image de marque. Au clic, on injecte
+   l'iframe (YouTube en domaine no-cookie). Si REPLAY_URL est vide,
+   on affiche l'écran d'attente. */
+function urlIntegration(brute) {
+  if (!brute) return '';
+  try {
+    const u = new URL(brute);
+    const h = u.hostname.replace('www.', '');
+    if (h === 'youtu.be') {
+      return 'https://www.youtube-nocookie.com/embed/' + u.pathname.slice(1);
+    }
+    if (h.endsWith('youtube.com') || h.endsWith('youtube-nocookie.com')) {
+      if (u.pathname.startsWith('/embed/')) {
+        return 'https://www.youtube-nocookie.com' + u.pathname;
+      }
+      if (u.pathname.startsWith('/live/')) {
+        return 'https://www.youtube-nocookie.com/embed/' + u.pathname.split('/')[2];
+      }
+      const id = u.searchParams.get('v');
+      if (id) return 'https://www.youtube-nocookie.com/embed/' + id;
+    }
+    if (h === 'vimeo.com') {
+      return 'https://player.vimeo.com/video/' + u.pathname.split('/').filter(Boolean)[0];
+    }
+    if (h === 'player.vimeo.com') return brute;
+    if (h === 'drive.google.com') {
+      const m = u.pathname.match(/\/file\/d\/([^/]+)/);
+      if (m) return 'https://drive.google.com/file/d/' + m[1] + '/preview';
+    }
+    return brute;
+  } catch (e) { return ''; }
+}
+
+(function preparerLecteur() {
+  const facade = $('facade');
+  const src = urlIntegration(CONFIG.REPLAY_URL);
+
+  facade.addEventListener('click', () => {
+    if (!src) {
+      facade.style.display = 'none';
+      $('attente').style.display = 'flex';
+      return;
+    }
+    envoyer('clic depuis le replay', 'clic=lecture');
+    const iframe = document.createElement('iframe');
+    const sep = src.includes('?') ? '&' : '?';
+    iframe.src = src + (src.includes('drive.google.com') ? '' : sep + 'autoplay=1&rel=0');
+    iframe.allow = 'autoplay; fullscreen; picture-in-picture; encrypted-media';
+    iframe.allowFullscreen = true;
+    iframe.title = 'Replay du live Selfty Academy';
+    $('lecteur').appendChild(iframe);
+    facade.remove();
+  });
+})();
+
+/* ---------- Apparitions douces au défilement ---------- */
+(function apparitions() {
+  const els = document.querySelectorAll('.apparait');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(el => el.classList.add('visible'));
+    return;
+  }
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  els.forEach(el => obs.observe(el));
+})();
+</script>
+
+</body>
+</html>
