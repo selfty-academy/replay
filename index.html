@@ -404,7 +404,7 @@
     color: rgba(30, 39, 72, 0.8);
     flex: 1;
   }
-  .carte .action {
+  .action {
     margin-top: 22px;
     display: inline-flex;
     align-items: center;
@@ -745,7 +745,7 @@
 const CONFIG = {
   // Flux HLS auto-hébergé (repo replay-video, coupé à 10 min 13 du direct).
   // Prioritaire sur REPLAY_URL. Vide = on retombe sur REPLAY_URL (iframe).
-  HLS_URL: "https://selfty-academy.github.io/replay-video/index.m3u8",
+  HLS_URL: "", // sera rempli quand le flux coupé à 10:13 sera en ligne (repo replay-video)
   REPLAY_URL: "https://drive.google.com/file/d/1MVFH09SrvmKAIkYut-CVeAWWnvUejV61/view",
   ICLOSED_URL: "https://app.iclosed.io/e/SelftyAcademy/clarity-call",
   WHATSAPP_NUMBER: "33781474620",
