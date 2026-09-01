@@ -743,6 +743,9 @@
      tagué « page=replay » pour le distinguer des visites du live.
    ====================================================================== */
 const CONFIG = {
+  // Flux HLS auto-hébergé (repo replay-video, coupé à 10 min 13 du direct).
+  // Prioritaire sur REPLAY_URL. Vide = on retombe sur REPLAY_URL (iframe).
+  HLS_URL: "https://selfty-academy.github.io/replay-video/index.m3u8",
   REPLAY_URL: "https://drive.google.com/file/d/1MVFH09SrvmKAIkYut-CVeAWWnvUejV61/view",
   ICLOSED_URL: "https://app.iclosed.io/e/SelftyAcademy/clarity-call",
   WHATSAPP_NUMBER: "33781474620",
@@ -849,24 +852,61 @@ function urlIntegration(brute) {
   } catch (e) { return ''; }
 }
 
+function descendreVersSuite() {
+  const reduit = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  $('suite').scrollIntoView({ behavior: reduit ? 'auto' : 'smooth', block: 'start' });
+}
+
+/* Lecture HLS : player natif sur Safari/iOS, hls.js (auto-hébergé) ailleurs. */
+function lancerHls(url) {
+  const video = document.createElement('video');
+  video.controls = true;
+  video.playsInline = true;
+  video.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;background:#000;';
+  video.title = 'Replay du live Selfty Academy';
+  video.addEventListener('ended', descendreVersSuite, { once: true });
+  $('lecteur').appendChild(video);
+
+  const demarrer = () => video.play().catch(() => {});
+  if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    video.src = url;
+    demarrer();
+  } else {
+    const s = document.createElement('script');
+    s.src = 'hls.min.js';
+    s.onload = () => {
+      const hls = new Hls();
+      hls.loadSource(url);
+      hls.attachMedia(video);
+      demarrer();
+    };
+    s.onerror = () => { video.src = url; demarrer(); };
+    document.head.appendChild(s);
+  }
+}
+
 (function preparerLecteur() {
   const facade = $('facade');
   const src = urlIntegration(CONFIG.REPLAY_URL);
 
   facade.addEventListener('click', () => {
-    if (!src) {
+    if (!CONFIG.HLS_URL && !src) {
       facade.style.display = 'none';
       $('attente').style.display = 'flex';
       return;
     }
     envoyer('clic depuis le replay', 'clic=lecture');
-    const iframe = document.createElement('iframe');
-    const sep = src.includes('?') ? '&' : '?';
-    iframe.src = src + (src.includes('drive.google.com') ? '' : sep + 'autoplay=1&rel=0');
-    iframe.allow = 'autoplay; fullscreen; picture-in-picture; encrypted-media';
-    iframe.allowFullscreen = true;
-    iframe.title = 'Replay du live Selfty Academy';
-    $('lecteur').appendChild(iframe);
+    if (CONFIG.HLS_URL) {
+      lancerHls(CONFIG.HLS_URL);
+    } else {
+      const iframe = document.createElement('iframe');
+      const sep = src.includes('?') ? '&' : '?';
+      iframe.src = src + (src.includes('drive.google.com') ? '' : sep + 'autoplay=1&rel=0');
+      iframe.allow = 'autoplay; fullscreen; picture-in-picture; encrypted-media';
+      iframe.allowFullscreen = true;
+      iframe.title = 'Replay du live Selfty Academy';
+      $('lecteur').appendChild(iframe);
+    }
     facade.remove();
   });
 })();
@@ -881,10 +921,7 @@ function urlIntegration(brute) {
     if (plein) { entree = true; return; }
     if (entree && !fait) {
       fait = true;
-      const reduit = matchMedia('(prefers-reduced-motion: reduce)').matches;
-      setTimeout(() => {
-        $('suite').scrollIntoView({ behavior: reduit ? 'auto' : 'smooth', block: 'start' });
-      }, 350);
+      setTimeout(descendreVersSuite, 350);
     }
   };
   document.addEventListener('fullscreenchange', changement);
