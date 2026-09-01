@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<noscript><style>.apparait { opacity: 1 !important; transform: none !important; }</style></noscript>
 <style>
   /* ======================================================================
      DA Selfty Academy : papier, prune, terracotta, crème.
@@ -776,6 +777,9 @@ function urlIntegration(brute) {
     });
   }, { threshold: 0.15 });
   els.forEach(el => obs.observe(el));
+  /* Filet de sécurité pour les navigateurs intégrés (Instagram, etc.) :
+     quoi qu'il arrive, tout est visible après 2,5 s. */
+  setTimeout(() => els.forEach(el => el.classList.add('visible')), 2500);
 })();
 </script>
 
